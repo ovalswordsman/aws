@@ -157,19 +157,23 @@ iam_client.attach_role_policy(
 ```
 <img width="1089" alt="Screenshot 2023-05-04 at 12 29 16 PM" src="https://user-images.githubusercontent.com/54627996/236132742-a6f2bddb-0e64-4aac-af11-5dd6738d2070.png">
 
-
-
-
-
-
-<b>c.</b>In python script, generate json in given format and save .json file in bucket created
-
+<b>c.</b>In python script, generate json in given format and save .json file in bucket created<br>
+<b>i. </b>Created a lambda_handler function to save the file in json in format and upload it to the bucket<br>
 
 
 <b>d.</b>Schedule the job to run every minute. Stop execution after 3 runs
+<b>i. </b>Using amazon lambda, created a function and uploaded the zip file created above
 
+<img width="871" alt="Screenshot 2023-05-04 at 4 16 04 PM" src="https://user-images.githubusercontent.com/54627996/236182673-ef121259-abca-425e-bb8d-95c85fef40ae.png">
+
+<b>ii. </b>Now using cloudwatch rule, created a rule for my lambda function to run it every minute.
+<img width="1176" alt="Screenshot 2023-05-04 at 4 19 17 PM" src="https://user-images.githubusercontent.com/54627996/236183390-02a31341-f4ea-4d8e-9bf5-fd8075cb4792.png">
 
 
 <b>e.</b>Check if cloudwatch logs are generated
+<img width="1075" alt="Screenshot 2023-05-04 at 4 21 07 PM" src="https://user-images.githubusercontent.com/54627996/236183766-e8faccf5-f88c-497c-84cd-df12f0d0549f.png">
+
+Also the file was added to the bucket
+<img width="1315" alt="Screenshot 2023-05-04 at 4 21 32 PM" src="https://user-images.githubusercontent.com/54627996/236183846-bcdd7d56-25dd-4c64-bd40-135d31ae795f.png">
 
 
