@@ -177,3 +177,65 @@ Also the file was added to the bucket
 <img width="1315" alt="Screenshot 2023-05-04 at 4 21 32 PM" src="https://user-images.githubusercontent.com/54627996/236183846-bcdd7d56-25dd-4c64-bd40-135d31ae795f.png">
 
 
+## Question 3
+<b>a.</b> Modify lambda function to accept parameters and return file name
+Modified lambda function is : 
+```
+import boto3
+import datetime
+import json
+
+s3 = boto3.resource('s3')
+bucket_name = 'disprzassgn'
+key_name = 'transaction{}.json'
+
+def lambda_handler(event, context):
+    try:
+        # Parse input data
+        transaction_id = event['transaction_id']
+        payment_mode = event['payment_mode']
+        amount = event['amount']
+        customer_id = event['customer_id']
+
+        # Generate JSON in the given format
+        timestamp = str(datetime.datetime.now())
+        transaction_data = {
+            "transaction_id": transaction_id,
+            "payment_mode": payment_mode,
+            "amount": amount,
+            "customer_id": customer_id,
+            "timestamp": timestamp
+        }
+
+        # Save JSON file in S3 bucket
+        json_data = json.dumps(transaction_data)
+        file_name = key_name.format(timestamp.replace(" ", "_"))
+        s3.Object(bucket_name, file_name).put(Body=json_data)
+
+        # Log the S3 object creation event
+        print(f"Object created in S3 bucket {bucket_name}: {file_name}")
+
+        return {
+            "file_name": file_name,
+            "status": "success"
+        }
+
+    except Exception as e:
+        print(e)
+        return {
+            "status": "error"
+        }
+```
+
+<b>b.</b> Create a POST API from API gateway, pass parameters as request body to Lambda job. Return filename and status as response<br>
+Created a post API with name <b>transactions</b>
+<img width="759" alt="Screenshot 2023-05-08 at 12 49 19 PM" src="https://user-images.githubusercontent.com/54627996/236760369-910dee7b-acd1-4935-bab4-484a47cac4e4.png">
+
+Tested the API by sending a POST request with the given JSON payload :
+<img width="1167" alt="Screenshot 2023-05-08 at 12 52 57 PM" src="https://user-images.githubusercontent.com/54627996/236761167-fe0dbdf9-baa9-4026-a5df-ba0d067bb433.png">
+
+Checking the cloudwatch logs : 
+<img width="1143" alt="Screenshot 2023-05-08 at 12 54 10 PM" src="https://user-images.githubusercontent.com/54627996/236761411-cb7b1c90-6e30-421d-967c-c2ffb1e2889d.png">
+
+c. Consume API from local machine and pass unique data to lambda.
+d. Check if cloud watch logs are generated
