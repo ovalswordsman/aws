@@ -238,4 +238,11 @@ Checking the cloudwatch logs :
 <img width="1143" alt="Screenshot 2023-05-08 at 12 54 10 PM" src="https://user-images.githubusercontent.com/54627996/236761411-cb7b1c90-6e30-421d-967c-c2ffb1e2889d.png">
 
 c. Consume API from local machine and pass unique data to lambda.
+Used postman to send the request
+<img width="916" alt="Screenshot 2023-05-08 at 1 43 29 PM" src="https://user-images.githubusercontent.com/54627996/236772049-2ac98b78-aace-43f4-ad42-9b97049d0d1e.png">
+
 d. Check if cloud watch logs are generated
+<img width="1146" alt="Screenshot 2023-05-08 at 1 43 45 PM" src="https://user-images.githubusercontent.com/54627996/236772098-c57b50fc-f5c4-4119-bc2f-7a3e55ef6b67.png">
+File also get uploaded to the bucket
+
+<img width="1094" alt="Screenshot 2023-05-08 at 1 44 04 PM" src="https://user-images.githubusercontent.com/54627996/236772172-47e6e987-5bcf-4f9d-96bf-10c2f5f403b9.png">
